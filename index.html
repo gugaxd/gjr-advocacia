@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="_ds/classical-2ab0b6e2-5560-459e-97f9-f3ed59d030fb/styles.css">
 <script src="_ds/classical-2ab0b6e2-5560-459e-97f9-f3ed59d030fb/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <style>
 @font-face{font-family:'Neulis Sans';src:url('assets/Neulis_Sans_Regular.otf') format('opentype');font-weight:400;font-display:swap}
 @font-face{font-family:'Neulis Sans';src:url('assets/Neulis_Sans_Bold.otf') format('opentype');font-weight:700;font-display:swap}
@@ -18,7 +21,6 @@ body{margin:0;background:#f3f2f2}
 a{color:#08373f;text-decoration:none}
 a:hover{color:#bfad61}
 summary::-webkit-details-marker{display:none}
-html{scroll-behavior:smooth}
 </style>
 </helmet>
 
@@ -38,10 +40,11 @@ html{scroll-behavior:smooth}
   </header>
 
   <section id="topo" style="position:relative;background:#08373f;overflow:hidden">
-    <div style="position:absolute;inset:0"><image-slot id="gjr-hero-fundo" shape="rect" fit="cover" src="assets/hero-justica.jpg" placeholder="Foto do topo — livros de direito, tribunal, arquitetura eclesiástica"></image-slot></div>
+    <div id="hero-parallax-bg" style="position:absolute;top:-12%;left:0;right:0;height:124%"><image-slot id="gjr-hero-fundo" shape="rect" fit="cover" src="assets/hero-justica.jpg" placeholder="Foto do topo — livros de direito, tribunal, arquitetura eclesiástica"></image-slot></div>
+    <div id="hero-parallax-texture" style="position:absolute;top:-12%;left:0;right:0;height:124%;background-image:url('assets/padronagem.jpg');background-size:cover;background-position:center;opacity:0.14;mix-blend-mode:overlay;pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:#08373f;opacity:0.8;pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,39,45,0.55) 0%,rgba(6,39,45,0.2) 60%,rgba(6,39,45,0.05) 100%);pointer-events:none"></div>
-    <div style="position:relative;max-width:1180px;margin:0 auto;padding:120px 32px 128px;display:grid;grid-template-columns:minmax(0,1fr);gap:0">
+    <div id="hero-parallax-content" style="position:relative;max-width:1180px;margin:0 auto;padding:120px 32px 128px;display:grid;grid-template-columns:minmax(0,1fr);gap:0">
       <div style="max-width:720px">
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px">
           <span style="width:46px;height:1px;background:#bfad61;display:block"></span>
@@ -276,6 +279,43 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger || !window.Lenis) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var hero = document.getElementById('topo');
+  if (hero) {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0
+      }
+    })
+      .to('#hero-parallax-bg', { yPercent: 16, ease: 'none' }, 0)
+      .to('#hero-parallax-texture', { yPercent: 30, ease: 'none' }, 0)
+      .to('#hero-parallax-content', { yPercent: -10, opacity: 0.5, ease: 'none' }, 0);
+  }
+
+  var lenis = new Lenis();
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -80 });
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
