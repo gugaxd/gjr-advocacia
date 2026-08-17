@@ -18,6 +18,8 @@
 @font-face{font-family:'Neulis Sans';src:url('assets/Neulis_Sans_Regular.otf') format('opentype');font-weight:400;font-display:swap}
 @font-face{font-family:'Neulis Sans';src:url('assets/Neulis_Sans_Bold.otf') format('opentype');font-weight:700;font-display:swap}
 body{margin:0;background:#f3f2f2}
+html{overflow-x:hidden}
+image-slot{display:block;max-width:100%}
 a{color:#08373f;text-decoration:none}
 a:hover{color:#bfad61}
 summary::-webkit-details-marker{display:none}
@@ -34,7 +36,7 @@ summary::-webkit-details-marker{display:none}
   #topo #hero-parallax-content{padding:88px 20px 56px!important}
   #topo h1{font-size:38px!important;margin:0 0 20px!important}
   #topo #hero-parallax-content p{font-size:16px!important;margin:0 0 28px!important}
-  #topo>div:last-child>div{grid-template-columns:1fr!important;gap:10px!important}
+  #topo>div:last-child>div{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
   #topo>div:last-child span{text-align:left!important}
 
   #atuacao,#escritorio,#duvidas{padding-top:64px!important;padding-bottom:64px!important}
@@ -42,21 +44,21 @@ summary::-webkit-details-marker{display:none}
   #atuacao h2,#escritorio h2,#processo h2,#duvidas h2,#contato h2{font-size:29px!important}
   #atuacao p,#escritorio p,#duvidas p{text-align:left!important}
 
-  #atuacao>div:first-child{grid-template-columns:1fr!important;gap:18px!important}
-  #atuacao>div:nth-child(2){grid-template-columns:1fr!important}
+  #atuacao>div:first-child{grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+  #atuacao>div:nth-child(2){grid-template-columns:minmax(0,1fr)!important}
 
-  #escritorio>div{grid-template-columns:1fr!important;gap:28px!important}
+  #escritorio>div{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}
   #escritorio .plate image-slot{height:360px!important}
-  .office-stats{gap:12px!important}
+  .office-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
 
-  #processo ol{grid-template-columns:1fr 1fr!important;gap:28px!important}
+  #processo ol{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:28px!important}
 
   blockquote{font-size:24px!important}
 
-  #duvidas>div{grid-template-columns:1fr!important;gap:28px!important}
+  #duvidas>div{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}
   #duvidas summary{font-size:20px!important}
 
-  #contato>div{grid-template-columns:1fr!important;gap:36px!important}
+  #contato>div{grid-template-columns:minmax(0,1fr)!important;gap:36px!important}
   #contato form{padding:26px!important}
   #contato span{overflow-wrap:anywhere!important}
 
@@ -64,7 +66,7 @@ summary::-webkit-details-marker{display:none}
 }
 @media (max-width:480px){
   #topo h1{font-size:32px!important}
-  #processo ol{grid-template-columns:1fr!important}
+  #processo ol{grid-template-columns:minmax(0,1fr)!important}
 }
 </style>
 </helmet>
