@@ -21,15 +21,61 @@ body{margin:0;background:#f3f2f2}
 a{color:#08373f;text-decoration:none}
 a:hover{color:#bfad61}
 summary::-webkit-details-marker{display:none}
+#nav-toggle-btn{display:none}
+@media (max-width:860px){
+  .header-inner{position:relative}
+  .header-inner > a img{height:48px!important}
+  #nav-toggle-btn{display:flex!important;align-items:center;justify-content:center}
+  .nav-links{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column!important;align-items:stretch!important;gap:0!important;background:#08373f;border-top:1px solid rgba(191,173,97,0.35);padding:8px 20px 24px!important;box-shadow:0 12px 24px rgba(0,0,0,0.25)}
+  .nav-links.is-open{display:flex!important}
+  .nav-links a{padding:14px 2px!important;border-bottom:1px solid rgba(191,173,97,0.15)}
+  .nav-links a:last-child{margin-top:14px;text-align:center;border-bottom:none}
+
+  #topo #hero-parallax-content{padding:88px 20px 56px!important}
+  #topo h1{font-size:38px!important;margin:0 0 20px!important}
+  #topo #hero-parallax-content p{font-size:16px!important;margin:0 0 28px!important}
+  #topo>div:last-child>div{grid-template-columns:1fr!important;gap:10px!important}
+  #topo>div:last-child span{text-align:left!important}
+
+  #atuacao,#escritorio,#duvidas{padding-top:64px!important;padding-bottom:64px!important}
+  #processo>div,#contato>div{padding-top:64px!important;padding-bottom:64px!important}
+  #atuacao h2,#escritorio h2,#processo h2,#duvidas h2,#contato h2{font-size:29px!important}
+  #atuacao p,#escritorio p,#duvidas p{text-align:left!important}
+
+  #atuacao>div:first-child{grid-template-columns:1fr!important;gap:18px!important}
+  #atuacao>div:nth-child(2){grid-template-columns:1fr!important}
+
+  #escritorio>div{grid-template-columns:1fr!important;gap:28px!important}
+  #escritorio .plate image-slot{height:360px!important}
+  .office-stats{gap:12px!important}
+
+  #processo ol{grid-template-columns:1fr 1fr!important;gap:28px!important}
+
+  blockquote{font-size:24px!important}
+
+  #duvidas>div{grid-template-columns:1fr!important;gap:28px!important}
+  #duvidas summary{font-size:20px!important}
+
+  #contato>div{grid-template-columns:1fr!important;gap:36px!important}
+  #contato form{padding:26px!important}
+  #contato span{overflow-wrap:anywhere!important}
+
+  footer>div{justify-content:center!important;text-align:center!important}
+}
+@media (max-width:480px){
+  #topo h1{font-size:32px!important}
+  #processo ol{grid-template-columns:1fr!important}
+}
 </style>
 </helmet>
 
 <div style="background:#f3f2f2;color:var(--color-text);font-family:var(--font-body)">
 
   <header style="position:sticky;top:0;z-index:20;background:#08373f;border-bottom:1px solid rgba(191,173,97,0.35)">
-    <div style="max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px">
+    <div class="header-inner" style="max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px">
       <a href="#topo" style="display:flex;align-items:center"><img src="assets/logo-principal.png" alt="GJR Advocacia Canônica" style="height:72px;width:auto;display:block"></a>
-      <nav style="display:flex;align-items:center;gap:28px;font-family:'Neulis Sans',sans-serif;font-size:13px;letter-spacing:0.09em;text-transform:uppercase">
+      <button id="nav-toggle-btn" type="button" aria-label="Abrir menu" aria-expanded="false" style="background:none;border:none;color:#f5f4f1;font-size:26px;line-height:1;cursor:pointer;padding:4px 6px">☰</button>
+      <nav class="nav-links" style="display:flex;align-items:center;gap:28px;font-family:'Neulis Sans',sans-serif;font-size:13px;letter-spacing:0.09em;text-transform:uppercase">
         <a href="#atuacao" style="color:#e8e6e1" style-hover="color:#bfad61">Atuação</a>
         <a href="#escritorio" style="color:#e8e6e1" style-hover="color:#bfad61">O escritório</a>
         <a href="#processo" style="color:#e8e6e1" style-hover="color:#bfad61">Processo</a>
@@ -121,7 +167,7 @@ summary::-webkit-details-marker{display:none}
         <h2 style="font-family:var(--font-heading);font-weight:400;font-size:46px;line-height:1.14;color:#08373f;margin:18px 0 26px">Do primeiro atendimento à sentença, uma só interlocução</h2>
         <p style="font-size:17px;line-height:1.85;color:#3d4646;margin:0 0 20px;text-align:justify">Gabriel José Rodrigues é advogado e canonista, com formação em Direito e licenciatura em Direito Canônico. O escritório dedica-se exclusivamente a causas eclesiásticas, acompanhando o cliente em cada ato do processo — sem intermediários e sem multiplicação de interlocutores.</p>
         <p style="font-size:17px;line-height:1.85;color:#3d4646;margin:0 0 36px;text-align:justify">A condução das causas observa o segredo de ofício previsto no cânon 1455 e o respeito devido às pessoas envolvidas. Quando o caso também produz efeitos civis, o acompanhamento é articulado com o advogado de confiança do cliente.</p>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--color-divider,#d8d5cf);padding-top:26px;gap:24px">
+        <div class="office-stats" style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--color-divider,#d8d5cf);padding-top:26px;gap:24px">
           <div>
             <div style="font-family:var(--font-heading);font-size:38px;color:#08373f;font-variant-numeric:tabular-nums;line-height:1">12</div>
             <div style="font-family:'Neulis Sans',sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6b7373;margin-top:8px">Anos de atuação</div>
@@ -281,6 +327,25 @@ class Component extends DCLogic {
 }
 </script>
 <script>
+(function () {
+  var navToggle = document.getElementById('nav-toggle-btn');
+  var navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = navLinks.classList.toggle('is-open');
+      navToggle.textContent = isOpen ? '✕' : '☰';
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('is-open');
+        navToggle.textContent = '☰';
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+})();
+
 (function () {
   if (!window.gsap || !window.ScrollTrigger || !window.Lenis) return;
 
